@@ -1,0 +1,68 @@
+{
+    "name": "robhimslf-winston-discord",
+    "version": "1.0.0",
+    "description": "Winston logging transport for emitting log entries to a Discord channel.",
+    "author": "Rob Himself <rob@robhimself.com>",
+    "keywords": [
+        "discord",
+        "logger",
+        "logging",
+        "node",
+        "transport",
+        "typescript",
+        "winston",
+        "winston3"
+    ],
+    "homepage": "https://github.com/robhimslf/winston-discord#readme",
+    "repository": "https://github.com/robhimslf/winston-discord.git",
+    "bugs": {
+        "url": "https://github.com/robhimslf/winston-discord/issues"
+    },
+    "license": "MIT",
+    "main": "dist/index.js",
+    "files": [
+        "/dist",
+        "/src"
+    ],
+    "scripts": {
+        "build": "tsc -p tsconfig.build.json",
+        "lint": "eslint src/**/*.ts",
+        "test": "npm run build && tsc -p tsconfig.test.json && mocha",
+        "release": "release-it"
+    },
+    "release-it": {
+        "github": {
+            "release": true,
+            "releaseNotes": "npx auto-changelog --stdout --commit-limit false -u --template ./changelog.hbs"
+        },
+        "hooks": {
+            "after:bump": "npx auto-changelog -p"
+        }
+    },
+    "dependencies": {
+        "@discordjs/rest": "^0.5.0",
+        "discord-api-types": "^0.36.1",
+        "discord.js": "^13.8.1",
+        "json-stringify-safe": "^5.0.1",
+        "tslib": "^2.4.0",
+        "winston": "^3.8.1",
+        "winston-transport": "^4.5.0"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.3.1",
+        "@types/json-stringify-safe": "^5.0.0",
+        "@types/mocha": "^9.1.1",
+        "@types/node": "^18.0.1",
+        "@types/sinon": "^10.0.12",
+        "@typescript-eslint/eslint-plugin": "^5.30.4",
+        "@typescript-eslint/parser": "^5.30.4",
+        "auto-changelog": "^2.4.0",
+        "chai": "^4.3.6",
+        "dotenv": "^16.0.1",
+        "eslint": "^8.19.0",
+        "mocha": "^10.0.0",
+        "release-it": "^15.1.1",
+        "sinon": "^14.0.0",
+        "typescript": "^4.7.4"
+    }
+}
