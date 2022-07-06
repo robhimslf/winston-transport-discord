@@ -1,0 +1,53 @@
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: Whether to run the release in non-destructive dry-run mode.
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    strategy:
+        matrix:
+          node-version: [16.x]
+
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2
+
+      - name: ⚙️ Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 💾 Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles( '**/yarn.lock' )}}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: 📦 Install Dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: 🏗️ Build
+        run: yarn build
+
+      - name: 📄 Prepare .npmrc File
+        run: |
+          NPM_TOKEN=${{ secrets.NPM_TOKEN }}
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+
+      - name: 🚀 Release (Dry Run)
+        if: ${{ inputs.dry-run }}
+        run: yarn test-release
+
+      - name: 🚀 Release
+        if: ${{ !inputs.dry-run }}
+        run: yarn release
