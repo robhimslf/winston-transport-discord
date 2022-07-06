@@ -1,28 +1,22 @@
 {
+    "extends": "@tsconfig/node16/tsconfig.json",
     "compilerOptions": {
+        "baseUrl": ".",
         "declaration": true,
-        "downlevelIteration": true,
         "esModuleInterop": true,
-        "importHelpers": true,
-        "inlineSources": true,
-        "lib": [ "es6", "dom" ],
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "noEmitHelpers": true,
-        "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
+        "outDir": "dist",
         "pretty": true,
+        "rootDir": "src",
         "sourceMap": true,
         "strict": true,
-        "strictBindCallApply": false,
-        "target": "es6",
-        "typeRoots": [
-            "@types",
-            "node_modules/@types"
-        ]
-    }
+        "strictBindCallApply": false
+    },
+    "exclude": [
+        "./**/*.test.ts"
+    ]
 }
