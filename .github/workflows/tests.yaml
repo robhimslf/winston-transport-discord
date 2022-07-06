@@ -1,0 +1,41 @@
+name: Tests
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2
+
+      - name: ⚙️ Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 💾 Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles( '**/yarn.lock' )}}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: 📦 Install Dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: 📄 Prepare .env files
+        run: |
+          echo "DISCORD_LOGGING_BOT_CHANNEL=${{ secrets.DISCORD_LOGGING_BOT_CHANNEL }}" >> .env.bot
+          echo "DISCORD_LOGGING_BOT_TOKEN=${{ secrets.DISCORD_LOGGING_BOT_TOKEN }}" >> .env.bot
+          echo "DISCORD_LOGGING_WEBHOOK_URL=${{ secrets.DISCORD_LOGGING_WEBHOOK_URL }}" >> .env.webhook
+
+      - name: 🧪 Test
+        run: yarn test

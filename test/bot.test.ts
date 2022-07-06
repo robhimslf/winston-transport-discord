@@ -3,9 +3,9 @@ import { expect } from 'chai';
 import dotenv from 'dotenv';
 import DiscordTransport, { BotHandler } from '../dist';
 
-describe( 'winston-discord w/ bots', () => {
+describe( 'winston-transport-discord w/ bots', () => {
 
-    it( 'initializes with explicit options', () => {
+    it( 'initializes from options', () => {
         const config = dotenv.config({ path: '.env.bot' });
         const channel = config.parsed!.DISCORD_LOGGING_BOT_CHANNEL;
         const token = config.parsed!.DISCORD_LOGGING_BOT_TOKEN;
@@ -18,8 +18,9 @@ describe( 'winston-discord w/ bots', () => {
                 }
             },
             metadata: {
-                service: 'winston-discord-transport unit tests',
-                context: 'winston-discord: bots -> logs with explicit options'
+                library: 'winston-transport-discord',
+                context: 'unit test w/ bots',
+                test: 'it: initializes from options'
             }
         });
 
@@ -27,13 +28,14 @@ describe( 'winston-discord w/ bots', () => {
         expect( transport.discordHandler ).to.be.an.instanceof( BotHandler );
     });
 
-    it( 'initializes with environment variables', () => {
+    it( 'initializes from environment variables', () => {
         dotenv.config({ path: '.env.bot' });
 
         const transport = new DiscordTransport({
             metadata: {
-                service: 'winston-discord-transport unit tests',
-                context: 'winston-discord: bots -> logs with environment variables'
+                library: 'winston-transport-discord',
+                context: 'unit test w/ bots',
+                test: 'it: initializes from environment variables'
             }
         });
 
@@ -41,13 +43,14 @@ describe( 'winston-discord w/ bots', () => {
         expect( transport.discordHandler ).to.be.an.instanceof( BotHandler );
     });
 
-    it( 'sends an integration test', () => {
+    it( 'sends an info log', () => {
         dotenv.config({ path: '.env.bot' });
 
         const transport = new DiscordTransport({
             metadata: {
-                service: 'winston-discord-transport unit tests',
-                context: 'winston-discord: bots integration test'
+                library: 'winston-transport-discord',
+                context: 'integration test w/ bots',
+                test: 'it: sends an info log'
             }
         });
 
@@ -55,16 +58,17 @@ describe( 'winston-discord w/ bots', () => {
             transports: [ transport ]
         });
 
-        logger.info( `This is an automated integration test.` );
+        logger.log( 'info', 'This is the log message.' );
     });
 
-    it( 'sends an integration test w/ error', () => {
+    it( 'sends an error log', () => {
         dotenv.config({ path: '.env.bot' });
 
         const transport = new DiscordTransport({
             metadata: {
-                service: 'winston-discord-transport unit tests',
-                context: 'winston-discord: webhooks integration test'
+                library: 'winston-transport-discord',
+                context: 'integration test w/ bots',
+                test: 'it: sends an error log'
             }
         });
 
@@ -72,9 +76,8 @@ describe( 'winston-discord w/ bots', () => {
             transports: [ transport ]
         });
 
-        const errorMessage = `Well that doesn't look healthy...`;
+        const errorMessage = `This is the error message or stack trace.`;
         const error = new Error( errorMessage );
-
-        logger.error( `This is an automated integration test.`, error );
-    })
+        logger.log( 'error', 'This is the log message.', error );
+    });
 });
