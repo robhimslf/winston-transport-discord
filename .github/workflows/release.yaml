@@ -33,6 +33,11 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles( '**/yarn.lock' )}}
           restore-keys: ${{ runner.os }}-node-
 
+      - name: 👤 Set Git Identity
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
       - name: 📦 Install Dependencies
         run: yarn install --frozen-lockfile --ignore-scripts
 
@@ -51,3 +56,5 @@ jobs:
       - name: 🚀 Release
         if: ${{ !inputs.dry-run }}
         run: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
