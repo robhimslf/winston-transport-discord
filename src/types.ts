@@ -56,7 +56,7 @@ export interface DiscordTransportOptions extends TransportStreamOptions {
         };
 
         /**
-         * Options for using this transport with a Discord bot. This is the
+         * Options for using this transport with a Discord webhook. This is the
          * recommended approach for simplicity.
          * 
          * To acquire:

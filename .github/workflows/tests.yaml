@@ -31,7 +31,7 @@ jobs:
       - name: 📦 Install Dependencies
         run: yarn install --frozen-lockfile --ignore-scripts
 
-      - name: 📄 Prepare .env files
+      - name: 📄 Prepare .env Files
         run: |
           echo "DISCORD_LOGGING_BOT_CHANNEL=${{ secrets.DISCORD_LOGGING_BOT_CHANNEL }}" >> .env.bot
           echo "DISCORD_LOGGING_BOT_TOKEN=${{ secrets.DISCORD_LOGGING_BOT_TOKEN }}" >> .env.bot
