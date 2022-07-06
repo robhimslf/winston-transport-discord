@@ -1,6 +1,6 @@
 {
     "name": "winston-transport-discord",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Winston logging transport for emitting log entries to a Discord channel.",
     "author": "Rob Himself <rob@robhimself.com>",
     "keywords": [
