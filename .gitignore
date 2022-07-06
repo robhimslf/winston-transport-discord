@@ -104,6 +104,9 @@ dist
 # TernJS port file
 .tern-port
 
+# RC files
+.npmrc
+
 # Generated TS test files
 test/*.d.ts
 test/*.js
