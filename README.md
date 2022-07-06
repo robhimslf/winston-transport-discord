@@ -1,6 +1,6 @@
 # winston-transport-discord
 
-[![npm version](https://badge.fury.io/js/winston-transport-discord.svg)](https://www.npmjs.com/package/winston-transport-discord) &nbsp; [![Tests](https://github.com/robhimslf/winston-discord/actions/workflows/tests.yaml/badge.svg)](https://github.com/robhimslf/winston-discord/actions/workflows/tests.yaml) &nbsp; [![Release](https://github.com/robhimslf/winston-discord/actions/workflows/release.yaml/badge.svg)](https://github.com/robhimslf/winston-discord/actions/workflows/release.yaml)
+[![npm version](https://badge.fury.io/js/winston-transport-discord.svg)](https://www.npmjs.com/package/winston-transport-discord) &nbsp; [![Tests](https://github.com/robhimslf/winston-transport-discord/actions/workflows/tests.yaml/badge.svg)](https://github.com/robhimslf/winston-transport-discord/actions/workflows/tests.yaml) &nbsp; [![Release](https://github.com/robhimslf/winston-transport-discord/actions/workflows/release.yaml/badge.svg)](https://github.com/robhimslf/winston-transport-discord/actions/workflows/release.yaml)
 
 [Winston](https://github.com/winstonjs/winston) logging transport for emitting log entries to a Discord channel.
 
