@@ -50,4 +50,4 @@ jobs:
 
       - name: 🚀 Release
         if: ${{ !inputs.dry-run }}
-        run: yarn release
+        run: npm run release
