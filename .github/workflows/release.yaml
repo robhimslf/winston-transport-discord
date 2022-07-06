@@ -42,7 +42,7 @@ jobs:
         run: yarn install --frozen-lockfile --ignore-scripts
 
       - name: 🏗️ Build
-        run: yarn build
+        run: yarn compile
 
       - name: 📄 Prepare .npmrc File
         run: |
@@ -51,7 +51,7 @@ jobs:
 
       - name: 🚀 Release (Dry Run)
         if: ${{ inputs.dry-run }}
-        run: yarn test-release
+        run: yarn release-test
 
       - name: 🚀 Release
         if: ${{ !inputs.dry-run }}
