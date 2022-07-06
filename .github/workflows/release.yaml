@@ -40,9 +40,7 @@ jobs:
         run: yarn build
 
       - name: 📄 Prepare .npmrc File
-        run: |
-          NPM_TOKEN=${{ secrets.NPM_TOKEN }}
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+        run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
 
       - name: 🚀 Release (Dry Run)
         if: ${{ inputs.dry-run }}
