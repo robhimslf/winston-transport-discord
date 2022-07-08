@@ -25,7 +25,7 @@ yarn add winston-transport-discord
 
 ```js
 const winston = require( 'winston' );
-const DiscordTransport = require( 'winston-transport-discord' );
+const { DiscordTransport } = require( 'winston-transport-discord' );
 
 // Create the transport.
 const transport = new DiscordTransport({
@@ -52,7 +52,7 @@ logger.info( 'This is the log message.' );
 
 ```typescript
 import winston from 'winston';
-import DiscordTransport, { DiscordTransportOptions } from 'winston-transport-discord';
+import { DiscordTransport, DiscordTransportOptions } from 'winston-transport-discord';
 
 // Create options to illustrate typing.
 const options: DiscordTransportOptions = {
@@ -104,7 +104,7 @@ The webhook handler can be configured in one of two ways:
 
 ```js
 const winston = require( 'winston' );
-const DiscordTransport = require( 'winston-transport-discord' );
+const { DiscordTransport } = require( 'winston-transport-discord' );
 
 // Create the transport.
 const transport = new DiscordTransport({
@@ -130,7 +130,7 @@ DISCORD_LOGGING_WEBHOOK_URL="PASTE THE WEBHOOK URL HERE"
 ```js
 const dotenv = require( 'dotenv' );
 const winston = require( 'winston' );
-const DiscordTransport = require( 'winston-transport-discord' );
+const { DiscordTransport } = require( 'winston-transport-discord' );
 
 // Run this before anything else.
 dotenv.config();
@@ -164,7 +164,7 @@ The bot handler can be configured in one of two ways:
 
 ```js
 const winston = require( 'winston' );
-const DiscordTransport = require( 'winston-transport-discord' );
+const { DiscordTransport } = require( 'winston-transport-discord' );
 
 // Create the transport.
 const transport = new DiscordTransport({
@@ -192,7 +192,7 @@ DISCORD_LOGGING_BOT_TOKEN="PASTE THE BOT TOKEN HERE"
 ```js
 const dotenv = require( 'dotenv' );
 const winston = require( 'winston' );
-const DiscordTransport = require( 'winston-transport-discord' );
+const { DiscordTransport } = require( 'winston-transport-discord' );
 
 // Run this before anything else.
 dotenv.config();
@@ -215,7 +215,7 @@ Global metadata - included with every log entry - is set in the transport option
 
 ```js
 const winston = require( 'winston' );
-const DiscordTransport = require( 'winston-transport-discord' );
+const { DiscordTransport } = require( 'winston-transport-discord' );
 
 // Create the transport.
 const transport = new DiscordTransport({
